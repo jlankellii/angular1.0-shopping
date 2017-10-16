@@ -1,0 +1,48 @@
+<ion-view hide-nav-bar="true">
+  <ion-header-bar  class="item-input-inset myTitle-bg">
+    <div class="buttons padding-right">
+      <a ng-click="backHome();">
+        <button class="button button-clear icon ion-ios-arrow-left colorWhite"></button>
+      </a>
+    </div>
+    <div class="item-input-wrapper myProduct-bg no-search-pad">
+      <i class="icon ion-ios-search placeholder-icon" style="color: #ffffff"></i>
+      <form ng-submit="searchGoods()">
+        <input type="search" placeholder="搜索我的订单." ng-model="search" ng-change="backHistory();"ng-focus="true">
+      </form>
+    </div>
+    <div class="buttons">
+      <span class="light padding-left" style="font-size: 24px;" ng-click="searchGoods()"><i class="icon ion-ios-search-strong"></i></span>
+    </div>
+  </ion-header-bar>
+  <ion-content no-tap-scroll="true" on-scroll="getScrollPosition()" delegate-handle="orderList" on-swipe-right="$ionicGoBack()">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+
+    <ion-infinite-scroll ng-if="more" immediate-check="false" on-infinite="loadMore()"
+                         distance="5%"></ion-infinite-scroll>
+    <ion-list>
+      <div ng-repeat="order in order">
+        <ion-item class="item-divider border-y" style="min-height: 0px">
+          <span class="myColor-small order-number">订单号{{order.number}}</span>
+        </ion-item>
+        <ion-item class="item-remove-animate item-avatar item-icon-right border-y order-gap " type="item-text-wrap" ng-click="showPhotoSheet()"  style="background: #DDDDDD">
+          <img class="product-img-y" style="border-radius: 0%;max-height: 70px;max-width: 70px;left:14px;top:12px;" ng-src="{{order.pic}}">
+          <i class="icon ion-chevron-right icon-accessory"></i>
+          <h2 ng-bind="order.title" style="height: 20px"></h2>
+          <span class="myColor-small" style="font-size:10px;" ng-bind="order.time" ></span>
+          <h2 class="order-grade" ng-bind="order.grade"></h2>
+        </ion-item>
+        <ion-item class="item-remove-animate item-icon-right border-y" style="margin-left:100px;">
+          <span style="dispaly:block; margin-left:-10px;">
+            <button class="button button-small button-outline button-stable order-btn " style="color:#000;" ng-click="comolain()" ng-show="true" ng-model="user.isShow">申诉</button>
+            <!--<button class="button button-small button-outline button-stable order-btn " style="color:#000;visibility:hidden;" >申诉</button>-->
+            <button class="button button-small button-outline button-stable order-btn " style="color:#000" ng-click="open()">晒单</button>
+            <button class="button button-small button-outline button-stable order-btn"style="color:#000" ng-click="share(order.orderNum,order.platformGoodsId)">分享</button>
+            </span>
+        </ion-item>
+      </div>
+      <div ng-show="show" style="text-align: center;margin-top: 5px;">没有更多数据了</div>
+    </ion-list>
+  </ion-content>
+  <div class="position-goTo text-center" ng-show="showTop"><i class="icon ion-android-arrow-up"  ng-click="goTop()" ></i></div>
+</ion-view>

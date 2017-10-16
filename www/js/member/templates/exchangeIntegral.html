@@ -1,0 +1,48 @@
+<ion-view hide-tabs="true" view-title="积分兑换" >
+	<ion-content class="scroll-content has-header BG">
+		<ion-list>
+			<ion-item style="padding-bottom: 10px;padding-top: 10px;margin-bottom: 10px;">
+				<div class="row" style="padding:0px">
+					<div class="col">可用积分</div><div class="col text-right" style="font-size:18px;color:green;">
+						<span>
+							{{(userScore-params.number*convertScore)>=0 ? (userScore-params.number/convertMoney*convertScore)+'个':'积分不足'}}
+						</span>
+					</div>
+				</div>
+				<div style="color:grey;font-size:10px;">({{convertScore}}积分={{convertMoney}}元)</div>
+			</ion-item>
+			<ion-item  style="text-align:center;margin-bottom: 10px">提现到支付宝</ion-item>
+			<div  style="margin-bottom: 10px;">
+				<ion-item style="padding-bottom: 20px;padding-top: 20px;" class="item item-avatar">
+					<img style="width: 40px;"  src="img/zhifubao.jpg">
+					<div style="padding-top: 6px;">
+					  	<span>账户:</span><span ng-bind="userinfo.alipayAccount"></span>
+					</div>
+				</ion-item>
+				<ion-item class="item-input" style="padding-bottom: 10px;padding-top: 10px;">
+					支付宝姓名：<span ng-bind="userinfo.alipayName"></span>
+				</ion-item>
+			</div>
+			<ion-item class="item-input" style="margin-bottom: 10px;padding-left: 3%;">
+	                <span class="input-label inputLabel">金额</span>
+	                <input class="no-input" type="number" placeholder="请输入提现金额" ng-model="params.number"/>
+			</ion-item>
+			<ion-item class="item-input" style="padding-bottom: 10px;padding-top: 10px;">
+				   	<input type="text" placeholder="请输入验证码" ng-model="params.validCode" maxlength="6" style="padding-right: 5px"/>
+					<button ng-click="getCode();" class="button button-small button-outline button-assertive text-center"  style="min-width: 70px;margin-right:3%;"  ng-disabled="timer">
+						<span ng-if="showTimer" style="color:#999; ">{{ timerCount }}</span>{{text}}
+					</button>
+			</ion-item>
+			<div class="row">
+				<div class="col"><button ng-disabled="{{confirm}}" class="button button-block bg-rowLast light" ng-click="exchangeIntegral()" >立即兑换</button></div>
+			</div>
+			<ion-item style="color:grey;">
+				<div style="margin-bottom: 20px;"><i style="color:#1b95e0;padding-right: 5px;" class="icon ion-ios-information"></i>温馨提示</div>
+				<div>1.非首笔提现且不满50元将收取{{procedureFee}}%手续费。</div>
+				<div>2.支付宝账号与姓名需正确才能打款成功。</div>
+				<div>3.申请将在1~3个工作日完成。</div>
+				<div>4.每次最少兑换{{minMoney}}元，每天最多累计兑换{{maxMoney}}元。</div>
+			</ion-item>
+		</ion-list>
+	</ion-content>
+</ion-view>

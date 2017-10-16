@@ -1,0 +1,16 @@
+<ion-view view-title="修改资料" hide-tabs="true">
+    <form>
+  <ion-nav-buttons side="right">
+      <button class="button" ng-click="downAction()" ng-disabled="signinForm.$invalid">保存</button>
+  </ion-nav-buttons>
+
+  <ion-content class="myProduct-bg">
+    <ion-list>
+      <ion-item>
+        详细地址
+        <input type="text" placeholder="{{userinfo.address}}" ng-model="input.address">
+      </ion-item>
+    </ion-list>
+  </ion-content>
+    </form>
+</ion-view>

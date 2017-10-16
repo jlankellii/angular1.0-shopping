@@ -1,0 +1,27 @@
+/**
+  login.html样式
+ */
+.BG{
+  background-color: #F8F8F8;
+  font-family: 黑体;
+  font-size: 0.5em;
+}
+.ion_nav{
+  font-family: 黑体;
+  font-size: 0.5em;
+  font-weight: 300;
+}
+.cancle_this{
+  font-family: 黑体;
+  top:6%;
+}
+
+.inputLabel{
+  dispaly:block;
+  width:60px;
+  margin-left:-10px;
+  text-indent: 1em;
+}
+
+.margin-LogoBox{padding: 100px 0 50px 0;}
+

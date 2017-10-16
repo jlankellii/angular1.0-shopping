@@ -1,0 +1,74 @@
+<ion-view hide-tabs="true" title="">
+    <ion-nav-title>
+      <div class="item-input-inset" style="margin-top: -2px">
+        <label class="item-input-wrapper no-search-pad">
+          <i class="icon ion-ios-search placeholder-icon" style="color: #ffffff"></i>
+          <form ng-submit="searchGoods()" style="font-size: 12px;width: 100%">
+            <input style="width: 100%; height: 24px;line-height: 16px;" type="search" placeholder="搜商品拿返利..." ng-model="$parent.search" ng-change="backHistory();"ng-focus="searchInputFocus">
+          </form>
+        </label>
+      </div>
+    </ion-nav-title>
+
+    <ion-nav-buttons side="right">
+      <div class="buttons">
+        <button class="button icon ion-ios-search-strong" style="background-color:#fe410a;color: #ffffff;border: none" ng-click="searchGoods()">
+        </button>
+      </div>
+    </ion-nav-buttons>
+    <!--<ion-header-bar  class="item-input-inset myTitle-bg">
+        <div class="buttons padding-right">
+            <a ng-click="backHome();">
+                <button class="button button-clear icon ion-ios-arrow-left colorWhite"></button>
+            </a>
+        </div>
+        <div class="item-input-wrapper myProduct-bg">
+            <i class="icon ion-ios-search placeholder-icon"></i>
+          <form ng-submit="searchGoods()" style="width: 100%">
+            <input type="text" placeholder="搜商品拿返利..." ng-model="search" ng-change="backHistory();"ng-focus="true">
+          </form>
+        </div>
+        <div class="buttons">
+            <span class="light padding-left" style="font-size: 24px;" ng-click="searchGoods()"><i class="icon ion-ios-search-strong"></i></span>
+        </div>
+    </ion-header-bar>-->
+	<ion-content on-scroll="getScrollPosition();" on-swipe-right="$ionicGoBack()">
+		<div ng-show="historyList">
+	 		<h5 class="padding-left" ng-show='historyFont'>搜索历史</h5>
+			<div class="row padding-horizontal" style="display:-webkit-flex;flex-flow: wrap;">
+				<!-- track by $index 解决搜索关键词重复时报错 -->
+				<span ng-click="searchHistory(this);"  style="margin-bottom: 5px;" class="button button-small light-border btn-marginRight" ng-repeat="history in historys track by $index">
+					<span class="overflowHidden">{{history}}</span>
+				</span>
+			</div>
+		</div>
+		<div ng-show="goodsList">
+            <div class="row product-box-model margin-bBox0" >
+                <div class="col col-50 padding-box0" ng-repeat="goods in goodList">
+                    <div class="product-BModelEvery">
+                        <a href="#/tab/goodsDetail/{{goods.id}}">
+                            <img class="product-img-box" ng-src="{{goods.picLink}}">
+                            <span class="row padding-box0" style="white-space:nowrap; margin-left: 4px;padding-right: 4px">
+                                    <span
+                                      class="box-bT-left no-coupon-fontStyle">{{goods.platformType}}</span>
+                                    <label class="buy-priceSize box-bT-right no-font-hide"
+                                           style="font-weight: normal;margin-left: 2px">{{goods.title}}</label>
+                            </span>
+                            <p class="row padding-TBBox0 margin-bBox0 margin-top1" style="margin-top: 2px">
+                                <span class="col col-bottom padding-box0 buy-numSize myColor-small del-line">原价￥{{goods.orgPrice}}</span>
+                                <span class="col padding-box0 text-right"><label class="coupon-fontStyle">{{goods.quanPrice}}元优惠</label></span>
+                            </p>
+                          <p class="row buy-price margin-top1" >
+                                <span class="col col-50 padding-box0"><span>券后</span><label class="buy-priceSize" style="font-weight: normal">{{goods.price | currency:"￥":1}}</label></span>
+                                <span class="col col-50 padding-box0 text-right">约{{goods.rebatePoints | showOrderFilter:'scoreFormat'}}积分</span>
+                          </p>
+                        </a>
+                    </div>
+                </div>
+			</div>
+			<p ng-if="noMore" style="text-align:center;color:gray;margin-top: 5px;">没有更多数据了</p>
+			<ion-infinite-scroll ng-if="swich"  on-infinite="loadMore()" immediate-check="false" distance="10%" ></ion-infinite-scroll>
+		</div>
+	</ion-content>
+	<div class="position-goTo text-center" ng-show="showTop"><i class="icon ion-android-arrow-up"  ng-click="goTop()" ></i></div>
+</ion-view>

@@ -1,0 +1,23 @@
+<div class="row product-box-model">
+    <div class="col col-50 padding-box0" ng-repeat="goodsItem in goodsList track by $index">
+        <div class="product-BModelEvery">
+            <a href="#/tab/goodsDetail/{{goodsItem.id}}">
+                <img class="product-img-box" ng-src="{{goodsItem.picLink}}" alt="">
+                <span class="row padding-box0" style="white-space:nowrap; margin-left: 4px;padding-right: 4px">
+                        <span
+                          class="box-bT-left" ng-class="goodsItem.platformType == '淘宝'?'no-coupon-fontStyle-T':'no-coupon-fontStyle'">{{goodsItem.platformType}}</span>
+                        <label class="buy-priceSize box-bT-right no-font-hide"
+                               style="font-weight: normal;margin-left: 2px">{{goodsItem.title}}</label>
+                </span>
+                <p class="row padding-TBBox0 margin-bBox0 margin-top1" style="margin-top: 2px">
+                    <span class="col col-bottom padding-box0 buy-numSize myColor-small del-line">原价￥{{goodsItem.orgPrice}}</span>
+                    <span class="col padding-box0 text-right"><label class="coupon-fontStyle">{{goodsItem.quanPrice}}元优惠</label></span>
+                </p>
+                <p class="row buy-price padding-TBBox0 margin-top1">
+                    <span class="col col-50 padding-box0"><span>券后</span><label class="buy-priceSize">{{goodsItem.orgPrice-goodsItem.quanPrice | currency:"￥":1}}</label></span>
+                    <span class="col col-50 padding-box0 text-right">约{{goodsItem.rebatePoints | showOrderFilter:'scoreFormat'}}积分</span>
+                </p>
+            </a>
+        </div>
+    </div>
+</div>

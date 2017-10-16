@@ -1,0 +1,40 @@
+<ion-view title="{{advTitle}}" hide-tabs="true">
+  <ion-nav-buttons side="right">
+    <div class="buttons">
+      <a href="#tab/home/good-list">
+        <button class="button button-icon icon ion-ios-search light"></button>
+      </a>
+    </div>
+  </ion-nav-buttons>
+  <ion-content on-scroll="getScrollPosition()" on-swipe-right="$ionicGoBack()">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <div class="row product-box-model">
+      <div class="col col-50 padding-box0" ng-repeat="item in goodsList">
+        <div class="product-BModelEvery">
+          <a href="#/tab/goodsDetail/{{item.id}}">
+            <img class="product-img-box" ng-src="{{item.picLink}}" alt="">
+            <span class="row padding-box0" style="white-space:nowrap; margin-left: 4px;padding-right: 4px">
+                    <span
+                      class="box-bT-left no-coupon-fontStyle">{{item.platformType}}</span>
+                    <label class="buy-priceSize box-bT-right no-font-hide"
+                           style="font-weight: normal;margin-left: 2px">{{item.title}}</label>
+            </span>
+            <p class="row padding-TBBox0 margin-bBox0 margin-top1" style="margin-top: 2px">
+              <span class="col col-bottom padding-box0 buy-numSize myColor-small del-line">原价￥{{item.orgPrice}}</span>
+              <span class="col padding-box0 text-right"><label class="coupon-fontStyle">{{item.quanPrice}}元优惠</label></span>
+            </p>
+            <p class="row buy-price padding-TBBox0 margin-top1" >
+                            <span class="col col-50 padding-box0"><span>券后</span><label class="buy-priceSize" style="font-weight: normal">{{item.price
+                                | currency:"￥":1}}</label></span>
+              <span class="col col-50 padding-box0 text-right">约{{item.rebatePoints | showOrderFilter:'scoreFormat'}}积分</span>
+            </p>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div ng-show="show" style="text-align: center;margin-top: 5px;margin-bottom: 5px;">没有更多数据了</div>
+    <ion-infinite-scroll ng-if="more" immediate-check="false" on-infinite="loadMore()"
+                         distance="10%"></ion-infinite-scroll>
+  </ion-content>
+  <div class="position-goTo text-center" ng-show="showTop"><i class="icon ion-android-arrow-up"  ng-click="goTop()"></i></div>
+</ion-view>

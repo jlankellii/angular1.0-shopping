@@ -1,0 +1,51 @@
+<ion-view hide-tabs="true">
+  <ion-nav-bar class="bar-clear">
+    <ion-nav-back-button class="button-clear">
+      <i class="button button-icon no-back-btn"></i>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content on-swipe-right="$ionicGoBack()" scrollbar-x="false" scrollbar-y="false" class="no-header-bar">
+    <div ng-show="!isEmpty">
+      <div class="myProduct-bg">
+        <img ng-src="{{goodsDetail.picLink}}" alt="" class="product-img-box" height="100%">
+      </div>
+      <div class="row myProduct-bg">
+        <span class="title-lineHeight" style="margin-top: 0;font-size: 14px">
+          <div ng-if="goodsDetail.platformType == '淘宝'">
+            <label class="light label-style no-coupon-detail-T">{{goodsDetail.platformType}}</label> <span>{{goodsDetail.title}}</span>
+          </div>
+          <div ng-if="goodsDetail.platformType != '淘宝'">
+            <label class="light label-style no-coupon-detail">{{goodsDetail.platformType}}</label> <span>{{goodsDetail.title}}</span>
+          </div>
+        </span>
+      </div>
+      <div class="row padding-top10">
+        <div class="col del-line myColor-small" style="padding: 0">原价：￥{{goodsDetail.orgPrice}}</div>
+        <div class="col text-right" style="padding: 0"><label
+          class="coupon-fontStyle">减{{goodsDetail.quanPrice}}元优惠券</label></div>
+      </div>
+      <div class="row" style="padding: 0;">
+        <div class="col buy-price" style="padding-top: 0">券后<label class="buy-priceSize" style="font-size: 16px">{{goodsDetail.price | currency:"￥"}}</label></div>
+        <!--<div>{{goodsDetail.rebatePoints}}</div>-->
+        <div class="myColor-small" style="padding-top: 0;padding-right: 4px">已抢购{{goodsDetail.salesNum}}件</div>
+      </div>
+
+      <div ng-if="goodsDetail.images.length" class="text-center" style="background-color: white;padding: 2px 0;margin-top: 5px">
+        <h4 style="color: #fe410a">图文详情</h4>
+      </div>
+
+      <div ng-repeat="imgUrl in goodsDetail.images">
+        <img ng-src="{{imgUrl}}" style="width: 100%;vertical-align: bottom">
+      </div>
+    </div>
+
+  </ion-content>
+  <!--<ion-footer-bar class="bar bar-footer row  myProduct-bg">
+    <div class="col col-33 padding-LRBox5">
+      <button class="button button-block button-energized" style="background-color: #fd9301;margin-top: 0px" ng-click="hideSheet()"><i class="icon ion-share"></i>分享</button>
+    </div>
+    <div class="col col-67 padding-LRBox5">
+      <button class="button button-block myTitle-bg"  ng-click="getCouponLink()" style="margin-top: 0px">领取{{goodsDetail.quanPrice}}元优惠券后直接购买</button>
+    </div>
+  </ion-footer-bar>-->
+</ion-view>

@@ -1,0 +1,15 @@
+<ion-view view-title="我的分销">
+  <div class="tabs-striped tabs-top tabs-color-assertive">
+    <div class="tabs">
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[isActive]" ng-click="seeSubordinateSocre()">分销业绩</a>
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[noActive]" ng-click="seeSubordinateState()">下线会员发展情况</a>
+    </div>
+  </div>
+  <ion-content class="has-subheader">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <div ng-include="contentUrl"></div>
+    <ion-infinite-scroll ng-if="more" immediate-check="false" on-infinite="loadMore()"
+                         distance="10%"></ion-infinite-scroll>
+  </ion-content>
+
+</ion-view>

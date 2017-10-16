@@ -1,0 +1,97 @@
+<ion-view view-title="会员资料" hide-tabs="true">
+  <!--<ion-header-bar class="myTitle-bg">-->
+    <!--<div class="buttons">-->
+      <!--<a href="#/tab/member">-->
+        <!--<button class="button button-clear icon ion-ios-arrow-left colorWhite"></button>-->
+      <!--</a>-->
+    <!--</div>-->
+    <!--<div class="title" >会员资料</div>-->
+  <!--</ion-header-bar>-->
+  <ion-content class="padding-top">
+    <ion-list>
+
+      <ion-item class="item-remove-animate item-avatar item-icon-right" ng-click="showPhotoSheet()">
+        <img ng-src="{{userinfo.avatar | formatUserInfo: 'avatar'}}">
+        <span class="item-note padding-top">更改头像</span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+
+      <ion-item class="item-icon-right" href="#/tab/member/profile/nameModify">
+        会员昵称
+        <span class="item-note" ng-bind="userinfo.alias"></span>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+      <div class="padding-top">
+        <ion-item class="item-icon-right">
+          手机号
+          <span class="item-note" ng-bind="userinfo.mobile | formatUserInfo:'mobile'"></span>
+        </ion-item>
+
+        <ion-item class="item-icon-right" href="#/tab/member/profile/emailModify">
+          会员邮箱
+          <span class="item-note" ng-bind="userinfo.email | formatUserInfo:'email'"></span>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+        <!--<ion-item class="item-icon-right" href="#/tab/member/profile/realNameModify">-->
+        <!--真实姓名-->
+        <!--<span class="item-note" ng-bind="userinfo.userRealName"></span>-->
+        <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+        <!--</ion-item>-->
+
+        <ion-item class="item-icon-right" href="#/tab/member/profile/genderModify">
+          性别
+          <span class="item-note" ng-bind="userinfo.gender | formatUserInfo:'gender'"></span>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+        <ion-item class="item-icon-right" href="#/tab/member/profile/birthdayModify">
+          出生日期
+          <span class="item-note" ng-bind="userinfo.birthday | date:'yyyy-MM-dd'"></span>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+        <!--<ion-item class="item-icon-right" href="#/tab/member/profile/addressModify">-->
+        <!--详细地址-->
+        <!--<span class="item-note" ng-bind="userinfo.address"></span>-->
+        <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+        <!--</ion-item>-->
+
+        <ion-item class="item-icon-right" href="#/tab/member/profile/alipayNameModify">
+          支付宝账号
+          <span class="item-note" ng-bind="userinfo.alipayAccount | formatUserInfo:'aliAccount'"></span>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+        <ion-item class="item-icon-right" href="#/tab/member/profile/alipayNameModify">
+          支付宝用户名
+          <span class="item-note" ng-bind="userinfo.alipayName | formatUserInfo:'aliName'"></span>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+      </div>
+      <div class="padding-top">
+        <ion-item class="item-icon-right" href="#/tab/member/profile/passwordModify">
+          修改密码
+          <span class="item-note">修改</span>
+          <i class="icon ion-chevron-right icon-accessory"></i>
+        </ion-item>
+
+        <ion-item class="item-icon-right">
+          版本号
+          <span class="item-note">V1.0</span>
+        </ion-item>
+        <!--<ion-item class="item-icon-right" ng-click="clearCache()">-->
+          <!--清除缓存-->
+          <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+        <!--</ion-item>-->
+      </div>
+    </ion-list>
+
+    <div class="row">
+      <div class="col">
+        <button class="button button-outline button-block button-light" style="background-color: #fff;"
+                ng-click="exitZLG()"><span class="assertive">退出登录</span></button>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

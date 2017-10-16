@@ -1,0 +1,292 @@
+
+.goodsClass_select {
+
+  color:#fe410a;
+  border-bottom: 2px solid #fe410a;
+  padding-left: 4px;
+}
+
+[data-dpr="2"] .quanline{
+  font-size: 28px;
+}
+[data-dpr="2.5"] .quanline{
+  font-size: 35px;
+}
+[data-dpr="2.75"] .quanline{
+  font-size: 39px;
+}
+[data-dpr="3"] .quanline{
+  font-size: 42px;
+}
+[data-dpr="4"] .quanline{
+  font-size: 56px;
+}
+.bar-clear {
+  background: none transparent;
+}
+.no-header-bar {
+  top: 0!important;
+}
+
+.no-full-scroll{
+  height: 100vh;
+}
+.no-full-scrollad{
+  height: 77vh;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen).no-full-scrollad{
+  height: 80vh;
+}
+
+.no-order-sq-username{
+  font-size: 18px;margin-top: 10px;margin-left: 5px
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .no-order-sq-username{
+  font-size: 18px;margin-top: 10px;margin-left: 15px
+}
+
+.no-bar-subheader{
+  height: 29px;
+  /*padding: 4px 0 0;*/
+  top: 40px;
+}
+
+.no-refresh-top{
+  margin-top: 70px;
+}
+.no-refresh-bottom{
+  margin-top: 42px;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .no-refresh-top{
+  margin-top: 90px;
+}
+.no-blank-header{
+  width: 100%;
+  height: 66px;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .no-blank-header{
+  width: 100%;
+  height: 90px;
+}
+.no-blank-footer{
+  width: 100%;
+  height: 42px;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .no-blank-footer{
+  width: 100%;
+  height: 42px;
+}
+.has-subheader.ios-subheader{
+  top:0;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .has-subheader.ios-subheader {
+  top: 0; }
+.tabs .tab-item .icon{
+  width: 24px;
+  height: 24px;
+  margin-top: 2px;
+}
+.tabs .tab-item .icon.no-secshare {
+  background-position-x: center;
+  background: url('../img/secshare.png') no-repeat 50%;
+  background-size:contain;
+}
+.tabs .tab-item .icon.no-secshare-off {
+  background-position-x: center;
+  background: url('../img/secshare_off.png') no-repeat 50%;
+  background-size:contain;
+}
+.tabs .tab-item .icon.no-share {
+   background-position-x: center;
+   background: url('../img/tab_share.png') no-repeat 50%;
+   background-size:contain;
+ }
+.tabs .tab-item .icon.no-share-off {
+  background-position-x: center;
+  background: url('../img/tab_share_off.png') no-repeat 50%;
+  background-size:contain;
+}
+.tabs .tab-item .icon.no-lb {
+  background-position-x: center;
+  background: url('../img/leaderboard.png') no-repeat 50%;
+  background-size:contain;
+}
+.tabs .tab-item .icon.no-lb-off {
+  background-position-x: center;
+  background: url('../img/leaderboard_off.png') no-repeat 50%;
+  background-size:contain;
+}
+
+.tabs .tab-item .icon.no-ss {
+  background-position-x: center;
+  background: url('../img/sharesquare.png') no-repeat 50%;
+  background-size:contain;
+}
+.tabs .tab-item .icon.no-ss-off {
+  background-position-x: center;
+  background: url('../img/sharesquare_off.png') no-repeat 50%;
+  background-size:contain;
+}
+
+.tabs .tab-item .icon.no-me {
+   background-position-x: center;
+   background: url('../img/me.png') no-repeat 50%;
+   background-size:contain;
+ }
+.tabs .tab-item .icon.no-me-off {
+  background-position-x: center;
+  background: url('../img/me_off.png') no-repeat 50%;
+  background-size:contain;
+}
+
+.tabs .tab-item .icon.no-home {
+  background-position-x: center;
+  background: url('../img/home.png') no-repeat 50%;
+  background-size:contain;
+}
+.tabs .tab-item .icon.no-home-off {
+  background-position-x: center;
+  background: url('../img/home_off.png') no-repeat 50%;
+  background-size:contain;
+}
+.tab-opacity > div{
+  opacity: 0.9;
+}
+
+.no-back-btn {
+  height: 24px;
+  opacity: 0.8;
+  margin-top: 10px;
+  background-position-x: center;
+  content: url('../img/itemback.png');
+  background-size:contain;
+}
+
+.no-search-pad {
+  background-color: #c9360c!important;
+  /*border: 1px solid #ffffff;*/
+  border-radius: 5px;
+}
+.no-search-pad input[type="search"]{
+  color:#ffffff;
+}
+
+.no-search-pad input[type="search"]::-webkit-input-placeholder{
+  color: #ffffff;
+}
+.no-search-pad input[type="search"]::-moz-placeholder{
+  color: #ffffff;
+}
+.no-search-pad input[type="search"]:-ms-input-placeholder {
+  color: #ffffff;
+}
+/*.no-mo-slide.ng-hide-add {
+  animation: zoomOut 0.5s;
+  -webkit-animation: zoomOut 0.5s;
+}
+
+.no-mo-slide.ng-hide-add.ng-hide-add-active {
+}
+
+.no-mo-slide.ng-hide-remove {
+  animation: zoomIn 1s;
+  -webkit-animation: zoomIn 1s;
+}
+
+.no-mo-slide.ng-hide-remove.ng-hide-remove-active {
+}*/
+.no-msg-linebtn > a.item-content{
+  padding: 0 5px 0 5px;
+}
+
+.home-ad-line{
+  padding: 0;
+  margin: 0 0 10px;
+  background-color: #ffffff;
+  -webkit-box-shadow: 0 1px 5px #b8b8b8;
+  -moz-box-shadow: 0 1px 5px #b8b8b8;
+  box-shadow: 0 1px 5px #b8b8b8;
+}
+.home-ad-img{
+  padding: 0;
+}
+.home-ad-title{
+  margin-top: 0!important;
+  color: #fe410a;
+  padding: 2px 5px 2px 10px!important;
+}
+
+/*.no-mo-slideleft.ng-hide-add {
+  animation: fadeOut 0.5s;
+  -webkit-animation: fadeOut 0.5s;
+}
+
+.no-mo-slideleft.ng-hide-add.ng-hide-add-active {
+}
+
+.no-mo-slideleft.ng-hide-remove {
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+}
+
+.no-mo-slideleft.ng-hide-remove.ng-hide-remove-active {
+}
+
+.no-mo-slideright.ng-hide-add {
+  animation: fadeOut 0.5s;
+  -webkit-animation: fadeOut 0.5s;
+}
+
+.no-mo-slideright.ng-hide-add.ng-hide-add-active {
+}
+
+.no-mo-slideright.ng-hide-remove {
+  animation: fadeIn 0.5s;
+  -webkit-animation: fadeIn 0.5s;
+}
+
+.no-mo-slideright.ng-hide-remove.ng-hide-remove-active {
+}*/
+
+.no-font-hide{
+  white-space:nowrap;
+  text-overflow:ellipsis;
+  overflow:hidden;
+  -webkit-text-overflow:ellipsis;
+}
+
+.no-chat-msg{
+  width: 100%;
+  padding-left: 6px!important;
+  border-top: 0!important;
+  border-left: 0!important;
+  border-right: 0!important;
+  border-bottom: 2px solid #fe410a!important;
+  -webkit-border-radius: 0!important;
+}
+.no-btn-small{
+  padding: 4px;
+  border: 1px solid #fe410a;
+  background-color: #fe410a;
+  color: #ffffff;
+  font-weight: normal;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+}
+
+.no-home-spec-line{
+  text-decoration:underline;
+}
+
+.platform-ios.platform-cordova:not(.fullscreen) .no-input{
+  margin-top: 4px;
+}
+.platform-ios.platform-cordova:not(.fullscreen) .no-input-top{
+  margin-top: 6px;
+}
+.no-popup-btn{
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+}

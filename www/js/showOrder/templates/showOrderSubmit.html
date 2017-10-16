@@ -1,0 +1,34 @@
+<ion-view view-title="晒单发布" hide-tabs="true">
+ <!--<ion-nav-title class="bg-rowLast light">
+    <div class="buttons">
+      <button class="button button-clear icon ion-ios-arrow-left " ng-click="rollback()"
+              style="color: inherit"></button>
+    </div>
+  </ion-nav-title>-->
+  <ion-nav-buttons side="right">
+    <buttons class="button button-clear button-positive">
+      <button class="button button-small button-outline" style="color: #ffffff;border-color: #ffffff" ng-click="downAction()">发布</button>
+    </buttons>
+  </ion-nav-buttons>
+  <ion-content>
+    <ion-list>
+      <ion-item class="item-divider border-y" style="background: #ffffff">
+        <div class="row">
+          <span>评分({{currentStar}}分)</span>
+          <div style="width: 100%;text-align: right">
+            <div style="float:left;white-space:nowrap" ng-repeat="item in starArray">
+              <img ng-click="clickStar(item)" src="{{item.src}}" width='20px' height='20px'/>
+            </div>
+          </div>
+        </div>
+        <div class="row" style="margin-top: 10px">
+          <textarea style="width: 100%;border: 1px solid #dadada;" placeholder="点评一下这件商品吧" ng-model="input.desc" rows="8"></textarea>
+        </div>
+      </ion-item>
+      <ion-item class="item-divider border-y" style="background: #ffffff;margin-top: 10px">
+        <img ng-src="img/sel_photo.jpg" ng-click="selectPhoto()" width="100" height="94">
+        <img ng-show="!!photoUrl" ng-src="{{photoUrl}}" width="100" height="94">
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

@@ -1,0 +1,17 @@
+<ion-view view-title="修改资料" hide-tabs="true">
+  <ion-nav-buttons side="right">
+    <a>
+      <button class="button" ng-click="downAction()">保存</button>
+    </a>
+
+  </ion-nav-buttons>
+
+  <ion-content>
+    <ion-list>
+      <ion-item>
+        <p>真实姓名</p>
+        <input type="text" placeholder="{{userinfo.userRealName}}" ng-model="input.userRealName">
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

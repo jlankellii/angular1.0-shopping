@@ -1,0 +1,31 @@
+<ion-view view-title="消息通知" hide-tabs="true">
+	<ion-content delegate-handle="myShowOrderHandle" no-tap-scroll="true" on-scroll="getScrollPosition()" on-swipe-right="$ionicGoBack()">
+		<ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+		<div>
+			<div ng-repeat="message in messageList" style="padding:2% 5%">
+					<div ng-click="getDetil(message.type,message.commonKey);" on-hold="deleteMsg($index,message.id);">
+			    		<div style="color:gray;text-align: center;font-size: 13px;">{{message.createTimeL| date:'yyyy-MM-dd HH:mm'}}</div>
+					    <ion-item style="margin-top:2px;">
+					    	<div style="color:gray;padding-bottom:2%;font-size: 13px;">{{message.title}}</div>
+					    	<div style="color:gray;" ng-repeat="detail in message.details">
+						    	<div style="font-size: 13px;">{{detail}}</div>
+					    	</div>
+					    </ion-item>
+					    <ion-item class="no-msg-linebtn" ng-show="message.type==300||message.type==301||message.type==302" href="">
+				            <div class="row">
+				              <span class="col"style="font-size: 13px;">查看详情</span><span class="ion-ios-arrow-right col text-right"></span>
+				            </div>
+		          		</ion-item>
+	              	</div>
+			</div>
+		</div>
+		<div>
+		    <p ng-show="isEmpty" style="text-align: center;margin-top: 5px;color:gray;">暂无数据</p>
+		    <p ng-show="noMore"style="text-align: center;margin-top: 5px;color:gray;">已经没有更多数据了</p>
+		</div>
+		<ion-infinite-scroll ng-if="canLoadMore" immediate-check="false" on-infinite="loadMore()"distance="10%"></ion-infinite-scroll>
+	 </ion-content>
+	<div class="position-goTo text-center" ng-show="showTop">
+	  <i class="icon ion-android-arrow-up" ng-click="goTop()"></i>
+	</div>
+</ion-view>

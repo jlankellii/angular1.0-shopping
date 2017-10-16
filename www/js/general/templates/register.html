@@ -1,0 +1,44 @@
+<ion-view hide-nav-bar="true" cache-view="false">
+	<ion-header-bar>
+        <div class="buttons">
+            <button class="button button-clear icon ion-ios-arrow-left button-dark" ng-click="rollback()"></button>
+        </div>
+        <h1 class="title">注册</h1>
+    </ion-header-bar>
+    <ion-content class="scoll-content has-header">
+        <form name="myForm" novalidate="novalidate" ng-submit="register()">
+            <div class="list">
+                <label class="item item-input-inset padding-lost6">
+                    <span class="input-label inputLabel">手机号</span>
+                    <input class="no-input-top"
+                           type="number"
+                           name="phone"
+                           ng-model="user.phoneNum"
+                           required
+                           placeholder="请输入手机号"
+                           maxlength="11"/>
+                    <span ng-show="myForm.phone.$valid"></span>
+                </label>
+                <div class="item item-input padding-lost6">
+                    <span class="input-label inputLabel">验证码</span>
+                    <input class="no-input-top" type="text" placeholder="请输入验证码" name="code" ng-model="user.mobileCode" maxlength="6"/>
+                    <span ng-show="myForm.code.$valid"></span>
+                    <button ng-click="getCode();" class="button button-small button-outline button-assertive"
+                            style="min-width: 70px" ng-disabled="timer">
+                        <span ng-if="showTimer" style="color:#999;">{{ timerCount }}</span>{{text}}
+                    </button>
+                </div>
+            </div>
+        </form>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="button button-block bg-rowLast light"
+                        ng-click="checkPhone()">下一步
+                </button>
+            </div>
+        </div>
+        <div class="row text-center">
+            <div class="col btnSize">注册即视为同意<a class="buy-price" ng-click="read()">《积分吧注册协议》</a></div>
+        </div>
+    </ion-content>
+</ion-view>

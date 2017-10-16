@@ -1,0 +1,88 @@
+<ion-view view-title="我的订单" hide-tabs="true">
+  <ion-nav-buttons side="right">
+    <div class="buttons">
+      <button class="button icon ion-ios-search-strong" style="background-color:#fe410a;color: #ffffff;border: none" ng-click="searchOrder()">
+      </button>
+    </div>
+  </ion-nav-buttons>
+
+  <!--<ion-header-bar class="bg-rowLast light">-->
+    <!--<div class="buttons">-->
+      <!--<button class="button button-clear icon ion-ios-arrow-left " ng-click="rollback()"-->
+              <!--style="color: inherit"></button>-->
+    <!--</div>-->
+    <!--<h1 class="title" style="color: inherit">我的订单</h1>-->
+    <!--<div class="buttons">-->
+      <!--<button class="button button-icon ion-more" style="color: #ffffff" ng-click="popover.show($event)">-->
+      <!--</button>-->
+    <!--</div>-->
+  <!--</ion-header-bar>-->
+  <ion-header-bar class="bar bar-subheader" style="dispaly:block; margin-left:-10px;">
+    <div class="tabs" style="height:45px;">
+      <a class="tab-item" style="padding-right: 15px;" ng-class="{true: 'active', false: 'inactive'}[total]" ng-click="totalOrder()">全部</a>
+      <a class="tab-item" style="padding-right: 0px;" ng-class="{true: 'active', false: 'inactive'}[future]"  ng-click="futureOrder()">即将可用</a>
+      <a class="tab-item" style="padding-left: 15px;" ng-class="{true: 'active', false: 'inactive'}[hold]" ng-click="holdOrder()">待领取</a>
+      <a class="tab-item" style="padding-left: -5px;" ng-class="{true: 'active', false: 'inactive'}[user]" ng-click="userOrder()">可用</a>
+      <a class="tab-item" style="padding-left: -5px;" ng-class="{true: 'active', false: 'inactive'}[comolain]" ng-click="comolainOrder()">申诉</a>
+    </div>
+  </ion-header-bar>
+  <ion-content no-tap-scroll="true" on-scroll="getScrollPosition()" delegate-handle="orderList">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh(comolainFlag)"></ion-refresher>
+    <ion-list>
+      <div ng-repeat="x in order track by $index" style="background: #f3f3f3;margin-top: 5px">
+          <ion-item class="item-divider border-y" style="background: #ffffff">
+              <span class="myColor-small order-number">订单号:{{x.orderNum}}</span>
+          </ion-item>
+          <ion-item class="item-remove-animate item-avatar item-icon-right border-y order-gap " type="item-text-wrap"
+                    ng-click="findGoodsDetails(x.platformGoodsId)" style="background: #ffffff;padding-right: 20px">
+            <img ng-if="type!='4'" class="product-img-y" style="border-radius: 0%;max-height: 70px;max-width: 70px;left:14px;top:12px;"
+                 ng-src="{{x.picLink}}">
+            <img ng-if="type=='4'" class="product-img-y" style="border-radius: 0%;max-height: 70px;max-width: 70px;left:14px;top:12px;"
+                 ng-src="{{x.picLink | showOrderFilter:'showPic'}}">
+            <!--<i class="icon ion-chevron-right icon-accessory"></i>-->
+            <div ng-bind="x.title" style="margin-left: 15px;margin-bottom:15px;" class="item-text-wrap"></div>
+            <div>
+              <span class="myColor-small" ng-bind="x.tradeTime | date:'yyyy-MM-dd HH:mm:ss' " style="font-size:10px;height: 20px;margin-left: 15px;"></span>
+            </div>
+            <span class="myColor-small order-grade" style="font-size:10px;margin-left: 15px;" ng-hide="{{x.orderStatus=='订单失效'||type=='4'}}">{{x.rebatePoints}}积分 返利</span>
+            <span class="myColor-small" style="font-size:10px;margin-left: 15px;"ng-hide="x.orderStatus!='订单失效'||type=='4'">交易失效</span>
+            <h2 class="order-grade" ng-bind="x.grade"></h2>
+          </ion-item>
+          <div ng-hide="type=='4'"  style="background-color: #ffffff;padding-top: 10px;padding-bottom: 10px;text-align: right;padding-right: 10px">
+            <button class="button button-small button-outline button-stable" style="color:#000"
+                    ng-click="comolainFun('{{x.orderNum}}')" ng-show="{{x.complainStatus!='1'&&x.orderStatus == '订单失效'}}">申诉
+            </button>
+            <!--<button class="button button-small button-outline button-stable order-btn " style="color:#000;visibility:hidden;" >申诉</button>-->
+            <button ng-hide="{{type=='4'||x.orderStatus=='订单失效'||x.exposureStatus=='1'}}" class="button button-small button-outline button-stable" style="color:#000"
+                    ng-click="open('{{x.orderNum}}','{{x.platformGoodsId}}')">晒单
+            </button>
+            <button ng-hide="type=='4'"  class="button button-small button-outline button-stable" style="color:#000"
+                    ng-click="share(x.orderNum,x.platformGoodsId)">分享
+            </button>
+          </div>
+      </div>
+      <ion-infinite-scroll ng-if="more" immediate-check="false" on-infinite="loadMore()"
+                           distance="5%"></ion-infinite-scroll>
+      <div ng-show="show" style="text-align: center;margin-top: 5px;">没有更多数据了</div>
+    </ion-list>
+  </ion-content>
+  <div class="position-goTo text-center" ng-show="showTop"><i class="icon ion-android-arrow-up" ng-click="goTop()"></i>
+  </div>
+<!--
+<script id="templates/popover.html" type="text/ng-template">
+  <ion-popover-view style="top: 29px;left: 259px;width: 110px;height: 120px">
+    <ion-content scroll="false" >
+      <div class="list">
+        <a class="item item-icon-left">
+          <i class="icon ion-chatbubble-working" style="color: #fd5726"></i>
+          消息
+        </a>
+        <a  class="item item-icon-left" ng-click="searchOrder()">
+          <i class="icon ion-search" style="color: #fd5726"></i>
+          搜索
+        </a>
+      </div>
+    </ion-content>
+  </ion-popover-view>
+</script>-->
+</ion-view>

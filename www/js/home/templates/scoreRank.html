@@ -1,0 +1,67 @@
+<ion-view view-title="积分排行" >
+  <div class="tabs-striped tabs-top tabs-color-assertive">
+    <div class="tabs">
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[totalRank]" ng-click="seeTotal()">总排行</a>
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[monthRank]" ng-click="seeMonth()">月排行</a>
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[dayRank]" ng-click="seeDay()">日排行</a>
+    </div>
+  </div>
+  <ion-content class="has-subheader" style="margin-bottom: 15px;" delegate-handle="backTop" on-scroll="getScrollPosition()">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <div ng-repeat="subPart in sub track by $index ">
+        <!--<ion-item class="item-divider border-y" style="min-height: 0px" style="border-color: #f4f4f4;"></ion-item>-->
+        <ion-item class="item-remove-animate padding-box0" type="item-text-wrap" ng-click="" style="border-color: #f4f4f4;">
+          <div class="row" style="padding-left: 20px">
+            <img ng-if="subPart.num+1<4" ng-src="img/rank{{subPart.num+1}}.png" style="margin-top: 15px;margin-right: 10px;width: 20px;height: 30px;margin-left: 5px">
+            <div class="col text-center" ng-if="subPart.num+1>3" style="color: #fe410a;font-size: 18px;margin-top: 15px">
+              <span style="margin-right: 5px">{{subPart.num+1}}</span>
+            </div>
+            <div class="col col-90" style="padding-left: 0">
+              <div class="row" style="padding-left: 0">
+                <div class="col col-60" style="padding: 0">
+                  <div class="row text-left" style="padding: 0">
+                    <img class="" ng-src="{{subPart.avatar | formatUserInfo: 'defaultAvatar'}}&&userId={{subPart.userId}}" style="height: 36px;width: 36px;">
+                    <span style="font-size: 16px" class="col text-left" ng-bind="subPart.alias"></span>
+                  </div>
+                </div>
+                <div class="col col-40 text-right" >
+                  <span class="myColor-small "  style="margin-right: 10px">积分({{subPart.score | showOrderFilter:'scoreFormatZero'}})</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </ion-item>
+      </div>
+      <div ng-show="show" style="text-align: center;margin-top: 5px;">没有更多数据了</div>
+      <div ng-show="showTop" style="text-align: center;margin-top: 5px;">只显示Top99</div>
+    </ion-list>
+    <ion-infinite-scroll ng-if="more" immediate-check="false" on-infinite="loadMore()"
+                         distance="10%"></ion-infinite-scroll>
+  </ion-content>
+  <div class="position-goTo text-center" ng-show="showToTop" style="margin-bottom: 50px;"><i class="icon ion-android-arrow-up"  ng-click="goTop()" ></i></div>
+  <ion-footer-bar class="item-remove-animate padding-box0 " style="height: 60px;margin-bottom: 42px;">
+    <ion-item class="item-remove-animate padding-box0" type="item-text-wrap" ng-click="" style="border-color: #f4f4f4;width: 100%">
+      <div class="row" style="padding-left: 20px">
+        <img ng-if="self.num<4" ng-src="img/rank{{self.num}}.png" style="margin-top: 15px;margin-right: 10px;width: 20px;height: 30px;margin-left: 5px">
+        <div class="col text-center" ng-if="self.num>3" style="color: #fe410a;font-size: 18px;margin-top: 15px">
+          <span style="margin-right: 5px">{{self.num!=1001?self.num:'无'}}</span>
+        </div>
+        <div class="col col-90" style="padding-left: 0">
+          <div class="row" style="padding-left: 0">
+            <div class="col col-60" style="padding: 0">
+              <div class="row text-left" style="padding: 0">
+                <img class="" ng-src="{{self.avatar | formatUserInfo: 'defaultAvatar'}}&&userId={{userId}}" style="height: 36px;width: 36px;">
+                <span style="font-size: 16px" class="col text-left" >{{self.alias}}(我)</span>
+              </div>
+            </div>
+            <div class="col col-40 text-right" >
+              <span class="myColor-small "  style="margin-right: 10px">积分({{self.score | showOrderFilter:'scoreFormatZero'}})</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-item>
+  </ion-footer-bar>
+</ion-view>
+

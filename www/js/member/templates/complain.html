@@ -1,0 +1,36 @@
+<ion-view title="订单申诉" hide-tabs="true">
+	<ion-content on-swipe-right="$ionicGoBack()">
+		<div class="list list-inset" style="margin:5px 10px;">
+			<label class="item item-input">
+				<span>姓名 ：</span>
+        <span ng-bind="user.userName"></span>
+			</label>
+		</div>
+		<div class="list list-inset"style="margin:5px 10px;">
+			<label class="item item-input">
+				<span>联系方式：</span>
+        <span ng-bind="user.mobile"></span>
+			</label>
+		</div>
+		<div class="list list-inset"style="margin:5px 10px;">
+			<label class="item item-input">
+				<span>订单号：</span>
+        <span ng-bind="user.ordersId"></span>
+			</label>
+		</div>
+		<div class="row" style="margin:5px 6px;width:96.5%;">
+			<ion-radio class="col" style="padding:0px"; ng-model="user.gender" ng-value="'0'">先生</ion-radio>
+			<ion-radio class="col" style="padding:0px"; ng-model="user.gender" ng-value="'1'">女士</ion-radio>
+		</div>
+		<label class="item item-input list-inset" style="margin-top: 5px">
+			<textarea type="text" placeholder="请输入您的申诉理由" rows="8" ng-model="user.title" maxlength="255"></textarea>
+		</label>
+
+    <ion-item class="item-divider border-y" style="background: #ffffff;margin-top: 10px">
+      <img ng-src="img/sel_photo.jpg" ng-click="selectPhoto()" width="100" height="94">
+      <img ng-show="!!user.file" ng-src="{{user.file}}" width="100" height="94">
+    </ion-item>
+
+		<button class="button button-full button-assertive" ng-click="submit()">提交申请</button>
+	</ion-content>
+</ion-view>

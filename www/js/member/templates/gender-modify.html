@@ -1,0 +1,14 @@
+<ion-view view-title="修改资料" hide-tabs="true">
+  <ion-nav-buttons side="right">
+    <button class="button button-outline button-stable" style="color: #fff;border-color: #fff;font-weight: normal" ng-click="downAction()">保存</button>
+  </ion-nav-buttons>
+
+  <ion-content class="padding-top myProduct-bg" on-scroll="false">
+    <ion-list>
+      <ion-item>
+        性别
+      </ion-item>
+      <ion-radio ng-repeat="item in genderList" style="align-content: center" ng-value="item.value" ng-model="choice.userGender">{{item.text}}</ion-radio>
+    </ion-list>
+  </ion-content>
+</ion-view>

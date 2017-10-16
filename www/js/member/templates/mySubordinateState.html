@@ -1,0 +1,18 @@
+<ion-list>
+  <a ng-repeat="subPart in subordinateStateList" href="#/tab/member/mySubordinate/userSubordinate/{{subPart.userId}}/{{subPart.alias}}">
+    <div class="row" style="background-color: #fff;">
+      <div class="col-67">
+        <div class="item item-avatar" style="border:0; "><img class="" ng-src="{{subPart.avatar | mySubordinateInfo:'avatar'}}">
+          <h2 ng-bind="subPart.alias"></h2>
+          <p><span style="font-size: 12px" class="myColor-small order-number">{{subPart.registerTime | date:'yyyy-MM-dd'}}注册</span></p>
+        </div>
+      </div>
+      <div class="col-33 col-center text-right">
+        <button style="font-size: 12px" class="button button-clear button-stable icon-right ion-chevron-right">查看他的下线</button>
+      </div>
+    </div>
+  </a>
+
+  <div ng-show="subStateshow" style="text-align: center;margin-top: 5px">暂无数据</div>
+  <div ng-show="noMore" style="text-align: center;margin-top: 5px">已经没有更多了</div>
+</ion-list>

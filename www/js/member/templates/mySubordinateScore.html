@@ -1,0 +1,36 @@
+<ion-list>
+  <div class=" " style="margin-top: 60px">
+    <div class="tabs tabs-light  " style=" background-image: linear-gradient(0deg, #f4f4f4, #f4f4f4 50%, transparent 50%);">
+      <a class="sub-y tab-item" ng-class="{true: 'active', false: 'inactive'}[all]" href="" ng-click="findAll()">全部</a>
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[first]" href="" ng-click="findFirst()">一级分销</a>
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[second]" href="" ng-click="findSecond()">二级分销</a>
+    </div>
+  </div>
+</ion-list>
+<ion-list>
+  <div ng-repeat="subPart in sub track by $index ">
+    <ion-item class="item-divider border-y" style="min-height: 0px" style="border-color: #f4f4f4;"></ion-item>
+    <ion-item class="item-remove-animate padding-box0" type="item-text-wrap" ng-click="" style="border-color: #f4f4f4;">
+      <div class="row">
+        <div class="col col-60 myTitle-size col-center item-avatar item-icon-right">
+          <img class="" ng-src="{{subPart.userAvatar | mySubordinateInfo: 'avatar'}}">
+          <h2 ng-bind="subPart.alias" style="margin-left: 60px;margin-top: 15px;"></h2>
+        </div>
+        <div class="col col-40 text-right">
+          <h3 class="myColor-small "  style="margin-top: 15px;margin-right: 10px">+积分({{subPart.score | showOrderFilter: 'scoreFormat'}})</h3>
+        </div>
+      </div>
+    </ion-item>
+    <ion-item class="padding-box0" style="border-color: #f4f4f4;">
+      <div class="row">
+        <div class="col col-50">
+          <span class="myColor-small order-number" >订单号{{subPart.rebateOrder | showOrderFilter:'orderId'}}</span>
+        </div>
+        <div class="col col-50 text-right">
+          <span class="myColor-small " style="font-size:10px;margin-right: 10px" ng-bind="subPart.date | date:'yyyy-MM-dd' " ></span>
+        </div>
+      </div>
+    </ion-item>
+  </div>
+  <div ng-show="show" style="text-align: center;margin-top: 5px;">没有更多数据了</div>
+</ion-list>

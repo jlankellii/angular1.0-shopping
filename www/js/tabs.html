@@ -1,0 +1,32 @@
+<ion-tabs class="tabs-icon-top tabs-color-active-assertive tab-opacity" ng-class="{'tabs-item-hide': $root.hideTabs}">
+
+  <ion-tab title="首页" icon-off="no-home-off" icon-on="no-home" ng-click="goHome()">
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+
+ <ion-tab title="我的分销" icon-off="no-secshare-off" icon-on="no-secshare" href="#/tab/mySubordinate">
+    <ion-nav-view name="tab-share"></ion-nav-view>
+  </ion-tab>
+
+  <!--<ion-tab title="积分排行" icon-off="ion-connection-bars" icon-on="ion-connection-bars" href="#/tab/score">-->
+    <!--<ion-nav-view name="tab-score"></ion-nav-view>-->
+  <ion-tab title="积分排行" icon-off="no-lb-off" icon-on="no-lb" href="#/tab/scoreRank">
+    <ion-nav-view name="tab-scoreRank"></ion-nav-view>
+  </ion-tab>
+
+
+  <!--<ion-tab title="晒单广场" icon-off="ion-coffee" icon-on="ion-coffee" href="#/tab/square">-->
+    <!--<ion-nav-view name="tab-square"></ion-nav-view>-->
+  <!--</ion-tab>-->
+  <ion-tab title="晒单广场" icon-off="no-ss-off" icon-on="no-ss" href="#/tab/showOrderSquare">
+    <ion-nav-view name="tab-showOrderSquare"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="我的" icon-off="no-me-off" ng-class="{true:'tab-red-point',false:''}[redButtonSwich]" icon-on="no-me" href="#/tab/member">
+    <ion-nav-view name="tab-member"></ion-nav-view>
+  </ion-tab>
+
+  <ion-tab title="分享" icon-off="no-share-off" icon-on="no-share" ng-click="shareApp()">
+  </ion-tab>
+
+</ion-tabs>

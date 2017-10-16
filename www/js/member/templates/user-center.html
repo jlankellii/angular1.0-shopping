@@ -1,0 +1,157 @@
+<ion-view hide-nav-bar="true">
+  <ion-content>
+    <div class="main-Box">
+      <div class="row">
+        <div class="col col-20  padding-left">
+          <img class="circle-img" ng-src="{{userInfo.avatar | formatUserInfo: 'avatar'}}">
+        </div>
+        <div class="col col-50 col-center light" style="padding-left: 0">{{userInfo.alias}}</div>
+        <div class="col text-right">
+          <button class="button button-icon icon ion-gear-a light" ng-click="seeUserProfile()"></button>
+        </div>
+      </div>
+      <div class="row padding-top">
+        <div class="col col-50 col-offset-25 text-center light">
+          <span class="fontBtnSize1">可用积分(个)</span>
+          <h2 class="light margin0">{{userInfo.score}}</h2>
+          <p>约{{userInfo.money}}元</p>
+        </div>
+        <div class="col col-bottom text-right">
+          <button class="button button-icon light fontBtnSize"
+                  ng-click="goExchange();">去兑换 <i class="icon ion-ios-arrow-right"></i>
+          </button>
+        </div>
+      </div>
+      <div class="row bg-rowLast">
+        <div class="col col-offset-10 light padding-top border-right" ng-click="allAward()">
+          累计积分(个)
+          <h4 class="light margin0">{{userInfo.allScore}}</h4>
+        </div>
+        <div class="col col-offset-10 light padding-top" ng-click="future()">
+          即将可用(个)
+          <h4 class="light margin0">{{userInfo.sealScore}}</h4>
+        </div>
+      </div>
+    </div>
+
+    <!--我的订单-->
+    <div class="myModel-every myOrders">
+      <div class="row">
+        <div class="col col-65 myTitle-size col-center">我的订单</div>
+        <div class="col col-35 text-right">
+          <button class="button button-icon button-small  myColor-small" ng-click="seeUserOrder(0)">查看全部订单 <i
+            class="icon ion-ios-arrow-right"></i></button>
+        </div>
+      </div>
+      <!--判断是否是android分享app返回-->
+      <span ng-hide="true" ng-bind="isAndroidBack"></span>
+      <!--首单绑定输入框-->
+      <div class="row" style="height: 40px">
+        <div class="col button-small myColor-small col-center" style="padding-right: 0">
+          <span class="help" ng-click="modal.show()">操作教程</span>
+        </div>
+        <div class="col col-60 item-input-wrapper myProduct-bg text-right"
+             style="text-align: right;border-radius: 5px;border: 1px solid #fe410a">
+          <input type="text" placeholder="请输入淘宝订单号..." maxlength="16"
+                 style="height: 18px;width: 100%;line-height: 16px;" ng-model="$parent.orderNum" ng-focus="hideTabs()"
+                 ng-blur="showTabs()">
+        </div>
+        <div class="col button-small myColor-small text-center" style="padding-top: 2px;">
+          <span ng-click="boundOrder()" class="no-btn-small">提交</span>
+          <!--<i ng-click="modal.show()" style="font-size: 15px;" class="ion-ios-help-outline"></i>-->
+        </div>
+      </div>
+      <div class="row margin-top10">
+        <div class="col text-center" ng-click="seeUserOrder(1)">
+          <img src="img/order-1.jpg" style="width: 24px;height: 24px">
+          <br><span class="myColor-small order-img-text">即将可用</span>
+        </div>
+        <div class="col text-center" ng-click="seeUserOrder(2)">
+          <img src="img/order-2.jpg" style="width: 26px;height: 24px">
+          <br><span class="myColor-small order-img-text">待领取</span>
+        </div>
+        <div class="col text-center" ng-click="seeUserOrder(3)">
+          <img src="img/order-3.jpg" style="width: 26px;height: 24px">
+          <br><span class="myColor-small order-img-text">可用</span>
+        </div>
+        <div class="col text-center" ng-click="seeUserOrder(4)">
+          <img src="img/order-4.jpg" style="width: 26px;height: 24px">
+          <br><span class="myColor-small order-img-text">申诉</span>
+        </div>
+      </div>
+    </div>
+
+    <!--我的应用-->
+    <div class="myModel-every">
+      <div class="row">
+        <div class="col myTitle-size col-center">我的应用</div>
+      </div>
+      <div class="row margin-top10">
+        <div class="col text-center border-rB">
+          <a ng-click="seeMySubordinate()"><img class="icon-imgSize" src="img/people.jpg"></a>
+          <!--                <a ng-click="seeMySubordinate()"><img class="icon-imgSize" src="img/people.jpg"></a> -->
+          <br><span class="myColor-small">我的分销</span>
+        </div>
+        <div class="col text-center border-rB" ng-click="seeMyShowOrder()">
+          <img class="icon-imgSize" src="img/orderSun.jpg">
+          <br><span class="myColor-small">我的晒单</span>
+        </div>
+        <div class="col text-center border-b" ng-click="attention()">
+          <img class="icon-imgSize" src="img/help.jpg">
+          <br><span class="myColor-small">帮助中心</span>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col text-center border-r" ng-click="goMessage();">
+          <img class="icon-imgSize" src="img/messages.jpg">
+          <span ng-show="redButtonSwich" class="badge badge-assertive"
+                style="position: absolute;font-size: 6px;border: 1px solid #ffffff;background-color: red;padding: 4px 4px;min-width:0;">
+					</span>
+          <br><span class="myColor-small">消息通知</span>
+        </div>
+        <div class="col text-center border-r" ng-click="goOnlineConsult()">
+          <!--                     <a href="#/tab/score"> -->
+          <img class="icon-imgSize" src="img/online-message.jpg">
+          <br><span class="myColor-small">在线咨询</span>
+        </div>
+        <div class="col text-center border-r">&nbsp;</div>
+      </div>
+    </div>
+    <div class="myModel-every">
+      <div class="row">
+        <div class="col myTitle-size col-center">任务提示</div>
+      </div>
+      <div class="row margin-top10" style="display:-webkit-flex; flex-flow: wrap;">
+        <div class="col col-25 text-center" ng-repeat="item in task" style="position: relative">
+          <img ng-src="{{item.img}}" style="width: 48px;height: 48px">
+          <span ng-show="item.done"
+                style="position: absolute;top: 18px;right: 0; left:0;font-size: 12px;color: #fe410a;">
+                              {{item.taskScore}}
+                      </span>
+          <span ng-show="!item.done"
+                style="position: absolute;top: 18px;right: 0; left:0;font-size: 12px;color: #999999;">
+                              {{item.taskScore}}
+                      </span>
+          <span ng-show="!item.done"
+                style="position: absolute;top: 0;right: 12px;">
+                            <i class="icon ion-checkmark-circled" style="font-size: 18px;color: #fe410a"></i>
+                      </span>
+          <div><span class="myColor-small">{{item.taskName}}</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="no-blank-footer"></div>
+  </ion-content>
+  <script id="templates/modal.html" type="text/ng-template">
+    <ion-modal-view>
+      <ion-header-bar class="bar-assertive bar bar-header">
+        <div class="title title-center header-item">订单绑定流程</div>
+        <button class="button button-clear button-primary" ng-click="modal.hide()">取消</button>
+      </ion-header-bar>
+      <ion-content class="padding">
+        <img ng-src="http://img.alicdn.com/imgextra/i1/2259544175/TB2KapMgXXXXXX0XpXXXXXXXXXX_!!2259544175.jpg"
+             style="width: 100%;height: 100%;">
+      </ion-content>
+    </ion-modal-view>
+  </script>
+</ion-view>

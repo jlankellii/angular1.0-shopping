@@ -1,0 +1,51 @@
+<ion-view hide-tabs="true"  title="在线咨询">
+  <ion-header-bar class="bar bar-subheader" style="display:block;height: 54px">
+    <p style="text-align: center">QQ:{{qq}}&nbsp;&nbsp;&nbsp;&nbsp;微信:{{weixin}}</p>
+    <p style="text-align: center" ng-bind="firstEnter"></p>
+  </ion-header-bar>
+  <ion-content on-swipe-right="$ionicGoBack()" delegate-handle="buttom" style="margin-top: 10px" keyboardshow>
+    <ion-list>
+      <div ng-show="show" style="text-align: center;margin-top: 5px;">没有更多数据了</div>
+      <ion-refresher ng-if="showMore" pulling-text="加载更多" on-refresh="loadMore()"></ion-refresher>
+      <div ng-repeat="c in chatAll">
+        <div class="row">
+          <span class="col text-center" style="color: #a7a7a7" ng-bind="c.createTime.time | date:'yyyy-MM-dd HH:mm:ss'"></span>
+        </div>
+        <div style="height: 120px;">
+          <div ng-class="{true: 'leftd', false: 'rightd'}[isUser(c.userId)]"  style="width: 100%">
+            <div ng-class="{true: 'leftd_h', false: 'rightd_h'}[isUser(c.userId)]">
+                <div ng-class="{true: 'nameLeft', false: 'nameRight'}[isUser(c.userId)]">
+                  <span>{{c.userName}}</span>
+                </div>
+              <div>
+                <img class="circle-img" ng-src="{{c.userAvatar | formatUserInfo: 'avatar'}}" ng-show="{true: false, false: true}[isUser(c.userId)]" style="width: 36px;height: 36px;">
+              </div>
+              <div>
+                <img class="circle-img" ng-src="{{c.userAvatar | formatUserInfo: 'defaultAvatar'}}" ng-show="{true: true, false: false}[isUser(c.userId)]" style="width: 36px;height: 36px;">
+              </div>
+            </div>
+          </div>
+          <div ng-class="{true: 'speech left', false: 'speech right'}[isUser(c.userId)]">
+            <span ng-bind="c.content"></span></br>
+
+          </div>
+        </div>
+      </div>
+    </ion-list>
+  </ion-content>
+  <ion-footer-bar keyboardshow>
+    <div class="item-input-wrapper " style="padding: 0;background-color: #ffffff">
+      <form ng-submit="sendMessage()" style="font-size: 12px;width: 100%;">
+        <input type="text" class="no-chat-msg"  ng-model="send_content" ng-change="backHistory();" maxlength="200">
+      </form>
+    </div>
+    <div class="rj-footer-btn-wrap">
+      <div class="rj-send-button"  ng-click="sendMessage()">
+        <button class="button bg-rowLast light"
+                style="margin-left: 15px;background-color: #fe410a;color: #ffffff;font-weight: normal;"
+                ng-class="{true:'button-stable',false:'bg-rowLast'}[!send_content || send_content === '']">发送
+        </button>
+      </div>
+    </div>
+  </ion-footer-bar>
+</ion-view>

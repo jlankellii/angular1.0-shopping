@@ -1,0 +1,20 @@
+<ion-view view-title="{{alias}}的下线" hide-tabs="true">
+  <ion-content>
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+
+    <ion-list>
+      <a class="item item-avatar" ng-repeat="subPart in subordinateUserList">
+        <img class="" ng-src="{{subPart.avatar | mySubordinateInfo:'avatar'}}">
+        <h2 ng-bind="subPart.alias"></h2>
+        <p><span class="myColor-small order-number" >{{subPart.registerTime | date:'yyyy-MM-dd'}}注册</span></p>
+      </a>
+
+      <div ng-show="isEmpty" style="text-align: center;margin-top: 5px">暂无数据</div>
+
+    </ion-list>
+    <div ng-show="noMore"style="text-align: center;margin-top: 5px">已经没有更多了</div>
+
+    <ion-infinite-scroll ng-if="canLoadMore" immediate-check="false" on-infinite="loadMore()"
+                         distance="10%"></ion-infinite-scroll>
+  </ion-content>
+</ion-view>

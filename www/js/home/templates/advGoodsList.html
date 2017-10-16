@@ -1,0 +1,46 @@
+<ion-view view-title="" hide-tabs="true">
+  <ion-nav-bar class="bar-clear">
+    <ion-nav-back-button class="button-clear">
+      <i class="button button-icon no-back-btn"></i>
+    </ion-nav-back-button>
+  </ion-nav-bar>
+  <ion-content scroll="false" on-swipe-right="$ionicGoBack()" on-scroll="getScrollPosition()" style="top:0;bottom: 0;">
+
+    <div class="home-ad-line">
+      <img class="row home-ad-img product-img-box" ng-src="{{prefix+advImgUrl}}" alt="" height="140px">
+      <!--<p class="row home-ad-title">{{advTitle}}</p>-->
+    </div>
+    <ion-scroll class="no-full-scrollad">
+      <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+      <ion-item style="padding-right: 15px;margin:0 0 5px 0;padding-left: 110px" ng-repeat="item in goodsList"
+                class="item-remove-animate item-avatar item-icon-right border-y order-gap product-BModelEvery"
+                type="item-text-wrap" ng-click="goGoodsDetail(item.id)">
+        <img class="product-img-y" style="border-radius: 0%;max-height: 100%;max-width: 100px;left:0;top:0;"
+             ng-src="{{item.picLink}}">
+        <span class="row padding-box0" style="white-space:nowrap; margin-left: 4px;padding-right: 4px">
+              <span class="box-bT-left no-coupon-fontStyle">{{item.platformType}}</span>
+              <label class="buy-priceSize box-bT-right no-font-hide"
+                     style="font-weight: normal;margin-left: 2px;font-size: 14px">{{item.title}}</label>
+        </span>
+
+        <p class="row padding-TBBox0 margin-bBox0 margin-top1" style="margin-top: 15px">
+          <span class="col col-bottom padding-box0 buy-numSize myColor-small del-line">原价￥{{item.orgPrice}}</span>
+          <span class="col padding-box0 text-right"><label class="coupon-fontStyle">{{item.quanPrice}}元优惠</label></span>
+        </p>
+        <p class="row buy-price padding-TBBox0 margin-top1" style="color: #fe410a">
+          <span class="col col-50 padding-box0">
+            <span>券后</span>
+            <label class="buy-priceSize" style="font-weight: normal">{{item.price | currency:"￥":1}}</label>
+          </span>
+          <span class="col col-50 padding-box0 text-right">约{{item.rebatePoints | showOrderFilter:'scoreFormat'}}积分</span>
+        </p>
+      </ion-item>
+      <div ng-show="show" style="text-align: center;margin-top: 5px;margin-bottom: 5px;">没有更多数据了</div>
+      <ion-infinite-scroll ng-if="more" immediate-check="false" on-infinite="loadMore()"
+                           distance="10%"></ion-infinite-scroll>
+    </ion-scroll>
+
+  </ion-content>
+  <div class="position-goTo text-center" ng-show="showTop"><i class="icon ion-android-arrow-up" ng-click="goTop()"></i>
+  </div>
+</ion-view>

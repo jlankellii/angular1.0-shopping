@@ -1,0 +1,30 @@
+<ion-view view-title="绑定支付宝" hide-tabs="true">
+  <ion-content class="padding-top myProduct-bg">
+    <form name="alipayNameForm">
+      <div class="list" style="margin-bottom: 0">
+        <label class="item item-input padding-lost6">
+          <span class="input-label inputLabel">支付宝账号</span>
+          <input type="text" name="alipayNum" placeholder="{{userinfo.alipayAccount | placeholder: 'alipayAccount'}}"
+                 ng-model="input.alipayAccount">
+        </label>
+        <label class="item item-input padding-lost6" style="padding-right: 45px!important;">
+          <span class="input-label inputLabel">支付宝用户名</span>
+          <input type="text" name="alipayName" placeholder="{{userinfo.alipayName | placeholder: 'alipayName'}}"
+                 ng-model="input.alipayName">
+        </label>
+        <div class="item item-input padding-lost6">
+          <span class="input-label inputLabel">验证码</span>
+          <input type="text" placeholder="请输入验证码" name="validCode" ng-model="input.code" maxlength="6" style="padding-right: 5px"/>
+          <button ng-click="getCode();" class="button button-small button-outline button-assertive text-center"  style="min-width: 70px"  ng-disabled="timer">
+            <span ng-if="showTimer" style="color:#999; ">{{ timerCount }}</span>{{text}}
+          </button>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <button class="button button-block button-assertive" ng-click="downAction()">保存</button>
+        </div>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

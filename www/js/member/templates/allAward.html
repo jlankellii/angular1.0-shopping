@@ -1,0 +1,33 @@
+<ion-view view-title="累计积分明细" hide-tabs="true">
+  <div class="tabs-striped tabs-top tabs-color-assertive has-tabs-top">
+    <div class="tabs">
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[isActive]" ng-click="gainAward()">获得积分</a>
+      <a class="tab-item" ng-class="{true: 'active', false: 'inactive'}[noActive]" ng-click="deductAward()">扣除积分</a>
+    </div>
+  </div>
+  <ion-content class="has-subheader" delegate-handle="allAward" no-tap-scroll="true" on-scroll="getScrollPosition()">
+    <ion-refresher pulling-text="下拉刷新" on-refresh="doRefresh()"></ion-refresher>
+    <ion-list>
+      <ion-item style="position: relative" ng-repeat="item in awardList">
+        <p class="text-left" style="font-size: 15px;margin-top: 5px">
+          {{item.scoreType}}
+        </p>
+        <p class="text-left">{{item.time.time| date:"yyyy-MM-dd HH:mm" }}</p>
+        <p class="text-right">
+          <span style="position:absolute;top:30px;right:10px;">
+            <i ng-if="isActive">+</i>
+            <i ng-if="noActive">-</i>
+              积分({{item.score | showOrderFilter:'scoreFormat'}})
+          </span>
+        </p>
+      </ion-item>
+    </ion-list>
+    <div ng-show="isEmpty" style="text-align: center;margin-top: 5px;">暂无数据</div>
+    <div ng-show="noMore" style="text-align: center;margin-top: 5px">已经没有更多数据了</div>
+    <ion-infinite-scroll ng-if="canLoadMore" immediate-check="false" on-infinite="loadMore()"
+                         distance="10%"></ion-infinite-scroll>
+  </ion-content>
+  <div class="position-goTo text-center" ng-show="showTop">
+    <i class="icon ion-android-arrow-up" ng-click="goTop()"></i>
+  </div>
+</ion-view>
